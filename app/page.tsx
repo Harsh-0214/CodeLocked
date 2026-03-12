@@ -70,7 +70,7 @@ export default async function HomePage() {
         </span>
       </header>
 
-      <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '3rem 1.5rem' }}>
+      <main style={{ padding: '3rem 1.5rem' }}>
         {/* Hero */}
         <div style={{ marginBottom: '4rem' }}>
           <h1
