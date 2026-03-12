@@ -12,10 +12,10 @@ function formatDate(dateStr: string) {
   });
 }
 
-const difficultyConfig = {
-  beginner: { label: 'beginner', color: 'color: #16a34a; background: #f0fdf4; border-color: #bbf7d0;' },
-  intermediate: { label: 'intermediate', color: 'color: #d97706; background: #fffbeb; border-color: #fde68a;' },
-  advanced: { label: 'advanced', color: 'color: #dc2626; background: #fef2f2; border-color: #fecaca;' },
+const difficultyStyle: Record<string, React.CSSProperties> = {
+  beginner: { color: '#16a34a', background: '#f0fdf4', borderColor: '#bbf7d0' },
+  intermediate: { color: '#d97706', background: '#fffbeb', borderColor: '#fde68a' },
+  advanced: { color: '#dc2626', background: '#fef2f2', borderColor: '#fecaca' },
 };
 
 export default async function HomePage() {
@@ -182,32 +182,14 @@ export default async function HomePage() {
               }}
             >
               {grouped[category].map((lesson) => {
-                const diff = difficultyConfig[lesson.difficulty] || difficultyConfig.beginner;
+                const diff = difficultyStyle[lesson.difficulty] || difficultyStyle.beginner;
                 return (
                   <Link
                     key={lesson.id}
                     href={`/lessons/${lesson.id}`}
-                    style={{ textDecoration: 'none' }}
+                    className="lesson-card-link"
                   >
-                    <article
-                      style={{
-                        background: 'var(--surface)',
-                        border: '1px solid var(--border)',
-                        borderRadius: '8px',
-                        padding: '1.25rem',
-                        height: '100%',
-                        transition: 'border-color 0.15s, box-shadow 0.15s',
-                        cursor: 'pointer',
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-strong)';
-                        (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 12px rgba(0,0,0,0.06)';
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)';
-                        (e.currentTarget as HTMLElement).style.boxShadow = 'none';
-                      }}
-                    >
+                    <article className="lesson-card">
                       <div
                         style={{
                           display: 'flex',
@@ -234,13 +216,7 @@ export default async function HomePage() {
                             padding: '0.1rem 0.5rem',
                             borderRadius: '999px',
                             border: '1px solid',
-                            ...Object.fromEntries(
-                              diff.color.split(';').filter(Boolean).map((s) => {
-                                const [k, v] = s.split(':').map((x) => x.trim());
-                                const camel = k.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
-                                return [camel, v];
-                              })
-                            ),
+                            ...diff,
                           }}
                         >
                           {lesson.difficulty}

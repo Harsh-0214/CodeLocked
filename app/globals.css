@@ -114,3 +114,22 @@ body {
 .prose em {
   font-style: italic;
 }
+
+.lesson-card-link {
+  text-decoration: none;
+}
+
+.lesson-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  height: 100%;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+}
+
+.lesson-card-link:hover .lesson-card {
+  border-color: var(--border-strong);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
