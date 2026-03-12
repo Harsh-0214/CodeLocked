@@ -1,6 +1,6 @@
 # Log Lesson to Dev Wiki
 
-When the user says **"log this to my lesson site"**, extract the key lesson from the conversation and POST it to the lesson API.
+When the user says **"log this to my lesson site"**, extract a detailed lesson from the conversation and POST it to the lesson API.
 
 ## Trigger
 
@@ -19,21 +19,36 @@ Make a POST request to the lessons API:
 **Body** (JSON):
 ```json
 {
-  "title": "Concise title of the lesson",
-  "summary": "One or two sentence summary of what was learned",
-  "content": "Full markdown explanation of the concept, with ## headings, code blocks, examples",
-  "category": "Category (e.g. TypeScript, React, Architecture, DevOps, Algorithms)",
+  "title": "Concise, specific title of the lesson",
+  "summary": "2-3 sentence summary of what was learned and why it matters",
+  "content": "Full markdown. Use ## sections, code blocks, - lists. 300-600 words: what the concept is, how it works, when to use it, common pitfalls.",
+  "category": "e.g. TypeScript, React, Next.js, Architecture, DevOps, Databases, Algorithms, Security",
   "difficulty": "beginner | intermediate | advanced",
-  "tags": ["tag1", "tag2", "tag3"],
-  "realWorldExample": "A concrete real-world scenario where this applies",
-  "keyTakeaways": ["Takeaway 1", "Takeaway 2", "Takeaway 3"],
-  "conversationContext": "Brief note about what prompted this lesson"
+  "tags": ["specific", "searchable", "tags"],
+  "realWorldExample": "A concrete industry scenario — how a real company or production system uses this. Be specific.",
+  "whyItMatters": "Why does this matter in professional engineering? What problems does it solve? What breaks without it?",
+  "technologiesUsed": [
+    { "name": "TechnologyName", "reason": "Why chosen over alternatives — what problem it solves, its tradeoffs" },
+    { "name": "AnotherTech", "reason": "Specific reason for using it in this context" }
+  ],
+  "keyTakeaways": [
+    "Specific actionable insight — not generic advice",
+    "Something to tell a junior dev joining the project",
+    "A gotcha or edge case worth remembering"
+  ],
+  "resumeSkills": [
+    { "skill": "Skill name as on a resume", "why": "Why employers value this — what it demonstrates, which roles care, how to discuss in interviews" },
+    { "skill": "Another Resume Skill", "why": "Context for why hiring managers care about this" }
+  ],
+  "conversationContext": "One sentence about what prompted this lesson"
 }
 ```
 
 ## Instructions
 
-1. Review the recent conversation to identify the core technical lesson
-2. Extract structured information as shown above
-3. POST to the API endpoint
-4. Confirm success with the lesson URL: `https://code-locked.vercel.app/lessons/{id}`
+1. Review the conversation and identify the core technical lesson
+2. For `technologiesUsed`: list every meaningful tech/library/tool — explain *why* chosen, not just what it is
+3. For `resumeSkills`: include both hard skills (specific tech) and soft concepts (e.g. "API design", "performance optimization") with honest context on their market value
+4. For `whyItMatters`: connect to broader engineering principles beyond the immediate problem
+5. For `content`: write as if explaining to a smart junior dev seeing this for the first time
+6. POST to the API, then confirm: `https://code-locked.vercel.app/lessons/{id}`

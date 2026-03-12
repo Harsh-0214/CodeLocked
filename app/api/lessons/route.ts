@@ -38,6 +38,9 @@ export async function POST(request: NextRequest) {
       realWorldExample: rest.realWorldExample || '',
       keyTakeaways: rest.keyTakeaways || [],
       conversationContext: rest.conversationContext || '',
+      technologiesUsed: rest.technologiesUsed || [],
+      resumeSkills: rest.resumeSkills || [],
+      whyItMatters: rest.whyItMatters || '',
     });
 
     return NextResponse.json({ lesson }, { status: 201 });

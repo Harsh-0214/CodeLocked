@@ -21,6 +21,9 @@ function rowToLesson(row: Record<string, unknown>): Lesson {
     realWorldExample: (row.real_world_example as string) ?? '',
     keyTakeaways: (row.key_takeaways as string[]) ?? [],
     conversationContext: (row.conversation_context as string) ?? '',
+    technologiesUsed: (row.technologies_used as Lesson['technologiesUsed']) ?? [],
+    resumeSkills: (row.resume_skills as Lesson['resumeSkills']) ?? [],
+    whyItMatters: (row.why_it_matters as string) ?? '',
     createdAt: row.created_at as string,
     updatedAt: row.updated_at as string,
   };
@@ -40,6 +43,9 @@ export async function createLesson(data: NewLesson): Promise<Lesson> {
       real_world_example: data.realWorldExample,
       key_takeaways: data.keyTakeaways,
       conversation_context: data.conversationContext,
+      technologies_used: data.technologiesUsed,
+      resume_skills: data.resumeSkills,
+      why_it_matters: data.whyItMatters,
     })
     .select()
     .single();
@@ -89,6 +95,9 @@ export async function updateLesson(
   if (updates.realWorldExample !== undefined) patch.real_world_example = updates.realWorldExample;
   if (updates.keyTakeaways !== undefined) patch.key_takeaways = updates.keyTakeaways;
   if (updates.conversationContext !== undefined) patch.conversation_context = updates.conversationContext;
+  if (updates.technologiesUsed !== undefined) patch.technologies_used = updates.technologiesUsed;
+  if (updates.resumeSkills !== undefined) patch.resume_skills = updates.resumeSkills;
+  if (updates.whyItMatters !== undefined) patch.why_it_matters = updates.whyItMatters;
 
   const { data, error } = await supabase
     .from('lessons')

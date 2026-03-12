@@ -282,6 +282,88 @@ export default async function LessonPage({ params }: PageProps) {
           </div>
         )}
 
+        {/* Why it matters */}
+        {lesson.whyItMatters && (
+          <div
+            style={{
+              background: '#f0f9ff',
+              border: '1px solid #bae6fd',
+              borderRadius: '8px',
+              padding: '1.25rem',
+              marginTop: '1.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: 'var(--mono)',
+                fontSize: '0.72rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                color: '#0369a1',
+                marginBottom: '0.6rem',
+              }}
+            >
+              💡 Why It Matters
+            </div>
+            <p style={{ fontFamily: 'var(--sans)', color: '#075985', lineHeight: 1.7, margin: 0, fontSize: '0.925rem' }}>
+              {lesson.whyItMatters}
+            </p>
+          </div>
+        )}
+
+        {/* Technologies used */}
+        {lesson.technologiesUsed && lesson.technologiesUsed.length > 0 && (
+          <div
+            style={{
+              background: 'var(--surface)',
+              border: '1px solid var(--border)',
+              borderRadius: '8px',
+              padding: '1.25rem',
+              marginTop: '1.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: 'var(--mono)',
+                fontSize: '0.72rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                color: 'var(--text-muted)',
+                marginBottom: '0.75rem',
+              }}
+            >
+              🛠 Technologies Used
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {lesson.technologiesUsed.map((tech, i) => (
+                <div key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                  <span
+                    style={{
+                      fontFamily: 'var(--mono)',
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      color: 'var(--text-primary)',
+                      background: 'var(--tag-bg)',
+                      border: '1px solid var(--border)',
+                      padding: '0.15rem 0.5rem',
+                      borderRadius: '3px',
+                      flexShrink: 0,
+                      marginTop: '1px',
+                    }}
+                  >
+                    {tech.name}
+                  </span>
+                  <span style={{ fontFamily: 'var(--sans)', color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6 }}>
+                    {tech.reason}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Key takeaways */}
         {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
           <div
@@ -325,6 +407,58 @@ export default async function LessonPage({ params }: PageProps) {
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {/* Resume skills */}
+        {lesson.resumeSkills && lesson.resumeSkills.length > 0 && (
+          <div
+            style={{
+              background: '#faf5ff',
+              border: '1px solid #e9d5ff',
+              borderRadius: '8px',
+              padding: '1.25rem',
+              marginTop: '1.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontFamily: 'var(--mono)',
+                fontSize: '0.72rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                color: '#7e22ce',
+                marginBottom: '0.75rem',
+              }}
+            >
+              📄 Resume-Worthy Skills
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {lesson.resumeSkills.map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                  <span
+                    style={{
+                      fontFamily: 'var(--mono)',
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      color: '#7e22ce',
+                      background: '#f3e8ff',
+                      border: '1px solid #e9d5ff',
+                      padding: '0.15rem 0.5rem',
+                      borderRadius: '3px',
+                      flexShrink: 0,
+                      marginTop: '1px',
+                    }}
+                  >
+                    {item.skill}
+                  </span>
+                  <span style={{ fontFamily: 'var(--sans)', color: '#581c87', fontSize: '0.875rem', lineHeight: 1.6 }}>
+                    {item.why}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 

@@ -11,6 +11,9 @@ export interface Lesson {
   createdAt: string;
   updatedAt: string;
   conversationContext: string;
+  technologiesUsed: { name: string; reason: string }[];
+  resumeSkills: { skill: string; why: string }[];
+  whyItMatters: string;
 }
 
 export type NewLesson = Omit<Lesson, 'id' | 'createdAt' | 'updatedAt'>;
