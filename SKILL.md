@@ -10,11 +10,11 @@ When the user says **"log this to my lesson site"**, extract the key lesson from
 
 Make a POST request to the lessons API:
 
-**URL:** `https://YOUR_DEPLOYED_URL/api/lessons`
+**URL:** `https://code-locked.vercel.app/api/lessons`
 **Method:** POST
 **Headers:**
 - `Content-Type: application/json`
-- `x-api-secret: YOUR_LESSON_API_SECRET`
+- `x-api-secret: Lessons123`
 
 **Body** (JSON):
 ```json
@@ -36,6 +36,4 @@ Make a POST request to the lessons API:
 1. Review the recent conversation to identify the core technical lesson
 2. Extract structured information as shown above
 3. POST to the API endpoint
-4. Confirm success with the lesson URL: `https://YOUR_DEPLOYED_URL/lessons/{id}`
-
-Replace `YOUR_DEPLOYED_URL` and `YOUR_LESSON_API_SECRET` with the real values after deploying.
+4. Confirm success with the lesson URL: `https://code-locked.vercel.app/lessons/{id}`
