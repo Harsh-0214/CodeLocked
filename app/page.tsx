@@ -53,9 +53,7 @@ export default async function HomePage() {
         }}
       >
         <span style={{ fontFamily: 'var(--mono)', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-          <span style={{ color: 'var(--text-primary)' }}>harsh</span>
-          <span style={{ margin: '0 0.35rem' }}>/</span>
-          <span>dev lessons</span>
+          <span style={{ color: 'var(--text-primary)' }}>CodeLocked</span>
         </span>
         <span
           style={{
@@ -86,7 +84,7 @@ export default async function HomePage() {
               letterSpacing: '-0.01em',
             }}
           >
-            My Software Engineering
+            CodeLocked
             <br />
             <em>Knowledge Base</em>
           </h1>
