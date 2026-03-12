@@ -1,6 +1,6 @@
 # Harsh's Dev Lessons
 
-A personal software engineering knowledge base built with Next.js 15 and Vercel KV. Lessons are captured from conversations using the trigger phrase **"log this to my lesson site"** via a Claude skill.
+A personal software engineering knowledge base built with Next.js 15 and Supabase. Lessons are captured from conversations using the trigger phrase **"log this to my lesson site"** via a Claude skill.
 
 ## What This Is
 
@@ -25,7 +25,7 @@ Claude will extract the key lesson from the conversation and POST it to your dep
 ## Tech Stack
 
 - **Next.js 15** with App Router and TypeScript
-- **Vercel KV** (Redis-backed key-value store) for persistence
+- **Supabase** (PostgreSQL) for persistence
 - **Tailwind CSS** for styling
 - **IBM Plex Mono + Fraunces + Geist** fonts
 
@@ -39,11 +39,13 @@ cd CodeLocked
 npm install
 ```
 
-### 2. Create a Vercel KV database
+### 2. Create a Supabase project
 
-1. Go to [vercel.com](https://vercel.com) and open your project (or create one by importing this repo)
-2. Navigate to **Storage** -> **Create Database** -> **KV**
-3. Copy the environment variables shown
+1. Go to [supabase.com](https://supabase.com) and create a new project
+2. In the SQL Editor, run the contents of `supabase-schema.sql` to create the `lessons` table
+3. Go to **Project Settings -> API** and copy:
+   - **Project URL** -> `NEXT_PUBLIC_SUPABASE_URL`
+   - **service_role** secret key -> `SUPABASE_SERVICE_ROLE_KEY`
 
 ### 3. Configure environment variables
 
@@ -51,13 +53,11 @@ npm install
 cp .env.example .env.local
 ```
 
-Fill in the KV values from Vercel, and set a secure `LESSON_API_SECRET`:
+Fill in your values:
 
 ```
-KV_URL=...
-KV_REST_API_URL=...
-KV_REST_API_TOKEN=...
-KV_REST_API_READ_ONLY_TOKEN=...
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 LESSON_API_SECRET=some-long-random-secret
 ```
 
@@ -67,6 +67,8 @@ Edit `SKILL.md` with your deployed URL and API secret, then upload it to:
 claude.ai -> profile -> My Skills
 
 ### 5. Deploy
+
+Deploy to Vercel (or anywhere):
 
 ```bash
 npx vercel --prod
