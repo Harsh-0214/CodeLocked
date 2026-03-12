@@ -55,7 +55,10 @@ export async function getLessons(): Promise<Lesson[]> {
     .select('*')
     .order('created_at', { ascending: false });
 
-  if (error) throw error;
+  if (error) {
+    console.error('[getLessons error]', error.message, error.code);
+    return [];
+  }
   return (data ?? []).map(rowToLesson);
 }
 
